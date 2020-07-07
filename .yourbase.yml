@@ -1,0 +1,19 @@
+build_targets:
+- commands:
+  - ./gradlew check
+  container:
+    image: yourbase/yb_ubuntu:18.04
+  name: default
+  environment:
+    - GRADLE_OPTS="-Dorg.gradle.jvmargs=-Xmx512m -Dorg.gradle.daemon=false"
+    - TERM=dumb
+    - TZ=/usr/share/zoneinfo/America/Los_Angeles
+
+ci:
+  builds:
+  - build_target: default
+    name: default
+dependencies:
+  build:
+  - java:11.0.6
+  - gradle:6.5.1
